@@ -211,6 +211,12 @@ const ProposalScreen = () => {
   };
 
   const handleSave = async () => {
+    if (!selectedClient) {
+      console.error('No client selected.');
+      // Optionally, notify the user to select a client
+      return;
+    }
+  
     try {
       const proposalData = {
         number: proposalInfo.number,
@@ -223,10 +229,10 @@ const ProposalScreen = () => {
         totals: calculateTotals(),
         createdAt: new Date().toISOString(),
       };
-
+  
       const proposalsRef = ref(db, 'proposals');
       await push(proposalsRef, proposalData);
-
+  
       console.log('Proposal saved successfully.');
       // Optionally, provide user feedback or navigate after saving
     } catch (error) {
@@ -234,6 +240,7 @@ const ProposalScreen = () => {
       // Optionally, handle the error (e.g., show a notification to the user)
     }
   };
+  
 
   const ITEM_HEIGHT = 40; // Height of each item row
   const VISIBLE_ITEMS = 5; // Number of visible items
@@ -396,7 +403,7 @@ const ProposalScreen = () => {
                     style={[styles.button, styles.cancelButton]}
                     onPress={() => router.back()}
                   >
-                    <Ionicons name="arrow-back" size={20} color="#ffffff" /> {/* Added icon */}
+                    <Ionicons name="arrow-back" size={20} color="#ffffff" />
                     <Text style={styles.buttonText}>Close</Text>
                   </TouchableOpacity>
                 </View>
@@ -405,17 +412,8 @@ const ProposalScreen = () => {
                     style={styles.button}
                     onPress={handleSave}
                   >
-                    <Ionicons name="save" size={20} color="#ffffff" /> {/* Added icon */}
+                    <Ionicons name="save" size={20} color="#ffffff" />
                     <Text style={styles.buttonText}>Save</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.buttonFlex}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => router.push('../screen/settings-page')}
-                  >
-                    <Ionicons name="settings-sharp" size={20} color="#ffffff" /> {/* Added icon */}
-                    <Text style={styles.buttonText}>Settings</Text>
                   </TouchableOpacity>
                 </View>
               </View>

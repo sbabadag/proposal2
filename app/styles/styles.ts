@@ -537,6 +537,56 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '600',
   },
+  proposalCard: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  proposalNumber: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  proposalDate: {
+    fontSize: 14,
+    color: '#555555',
+    marginBottom: 4,
+  },
+  proposalClient: {
+    fontSize: 14,
+    color: '#555555',
+    marginBottom: 4,
+  },
+  proposalClientNAN: { // New style for 'N/A'
+    fontSize: 14,
+    color: '#ff0000', // Red color to indicate missing data
+    marginBottom: 4,
+  },
+  proposalTotal: {
+    fontSize: 16,
+    color: '#2c3e50',
+    fontWeight: 'bold',
+  },
+  listContainer: {
+    paddingBottom: 16,
+  },
+  picker: {
+    height: 50,
+    width: '100%',
+    borderColor: '#2563eb',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 16,
+    paddingHorizontal: 8,
+    backgroundColor: '#ffffff',
+  },
 });
 
 export default styles;

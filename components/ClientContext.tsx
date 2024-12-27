@@ -1,29 +1,31 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Text } from 'react-native';
 import { db, storage } from '../config/firebase';
 import { ref as dbRef, set, push, onValue, off } from 'firebase/database';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-export interface ClientDetails {
+interface Client {
   id: string;
   company: string;
   personnel: string;
   address: string;
   logo?: string;
+  saveClient: (client: Client) => Promise<void>;
 }
 
 interface ClientContextType {
-  selectedClient: ClientDetails | null;
-  setSelectedClient: (client: ClientDetails | null) => void;
-  saveClient: (client: ClientDetails) => void;
-  clients: ClientDetails[];
+  selectedClient: Client | null;
+  setSelectedClient: (client: Client | null) => void;
+  clients: Client[];
+  setClients: (clients: Client[]) => void;
+  saveClient: (client: Client) => Promise<void>;
 }
 
 const ClientContext = createContext<ClientContextType | undefined>(undefined);
 
-export function ClientProvider({ children }: { children: React.ReactNode }) {
-  const [clients, setClients] = useState<ClientDetails[]>([]);
-  const [selectedClient, setSelectedClient] = useState<ClientDetails | null>(null);
+export function ClientProvider({ children }: { children: ReactNode }) {
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [clients, setClients] = useState<Client[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function ClientProvider({ children }: { children: React.ReactNode }) {
             if (data) {
               const clientsList = Object.entries(data).map(([id, value]) => ({
                 id,
-                ...(value as Omit<ClientDetails, 'id'>)
+                ...(value as Omit<Client, 'id'>)
               }));
               setClients(clientsList);
             } else {
@@ -64,7 +66,7 @@ export function ClientProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const saveClient = async (client: ClientDetails) => {
+  const saveClient = async (client: Client) => {
     try {
       if (!db) throw new Error('Database not initialized');
 
@@ -114,7 +116,7 @@ export function ClientProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ClientContext.Provider value={{ selectedClient, setSelectedClient, saveClient, clients }}>
+    <ClientContext.Provider value={{ selectedClient, setSelectedClient, saveClient, clients, setClients }}>
       {children}
     </ClientContext.Provider>
   );
