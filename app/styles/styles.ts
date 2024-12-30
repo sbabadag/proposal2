@@ -82,18 +82,22 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   label: {
-    fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 4,
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
   },
   value: {
     fontSize: 16,
     fontWeight: '500',
   },
   input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
     fontSize: 16,
-    padding: 0,
-    fontWeight: '500',
+    backgroundColor: '#fff',
   },
   mt4: {
     marginTop: 16,
@@ -466,20 +470,6 @@ const styles = StyleSheet.create({
     flexGrow: 1, // Allow content to expand without overlapping
     paddingBottom: 100, // Adjust based on button height
   },
-  // fixedButtonContainer: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   left: 0,
-  //   right: 0,
-  //   flexDirection: 'row',
-  //   backgroundColor: 'white',
-  //   padding: 16,
-  //   borderTopWidth: 1,
-  //   borderTopColor: '#e5e7eb',
-  //   justifyContent: 'space-between',
-  //   elevation: 5,
-  //   zIndex: 999,
-  // },
   buttonFlex: {
     flex: 1,
     marginHorizontal: 8,
@@ -586,6 +576,60 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingHorizontal: 8,
     backgroundColor: '#ffffff',
+  },
+  cardDataContainer: {
+    padding: 10,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  cardDataText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  logoContainer: {
+    width: 200,
+    height: 133, // 3:2 aspect ratio
+    borderRadius: 8,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+  logoImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+  logoPlaceholder: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputContainer: {
+    marginBottom: 16,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
+  },
+  settingsSection: {
+    marginBottom: 24,
+    padding: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+
+  },
+  proposalAmount: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 4,
   },
 });
 

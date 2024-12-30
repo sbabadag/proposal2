@@ -37,10 +37,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="SettingsScreen"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <Ionicons name="settings-outline" size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="settings-sharp" size={24} color={color} />,
         }}
       />
     </Tabs>
