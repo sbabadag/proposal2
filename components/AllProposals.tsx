@@ -60,7 +60,14 @@ const AllProposals = () => {
   const renderProposal = ({ item }: { item: Proposal }) => (
     <TouchableOpacity
       style={styles.proposalCard}
-      onPress={() => router.push(`../proposal/${item.id}`)}
+      onPress={() => {
+        if (item.id === 'new') {
+          // Clear any necessary fields or states here if needed
+          router.push('../proposal/new');
+        } else {
+          router.push(`../proposal/${item.id}`);
+        }
+      }}
     >
       <Text style={styles.proposalNumber}>Proposal No: {item.number}</Text>
       <Text style={styles.proposalDate}>Date: {item.date}</Text>
@@ -89,7 +96,7 @@ const AllProposals = () => {
         ))}
       </Picker>
       <FlatList
-        data={filteredProposals}
+        data={[{ id: 'new', number: '', date: '', companyInfo: {}, client: {}, totals: {} }, ...filteredProposals]}
         keyExtractor={(item) => item.id}
         renderItem={renderProposal}
         contentContainerStyle={styles.listContainer}
